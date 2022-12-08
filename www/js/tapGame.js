@@ -7,9 +7,7 @@
 //
 
 /******************************************************/
-    // APIキーの設定
-    var APPLICATION_KEY ="YOUR_NC7855dbc2ce279a87fc5a629df31b2c1bc58985226529d198b48466276ab54b19B_APPLICATION_KEY";
-    var CLIENT_KEY ="70cd03854eb845bec75fd388541a9303d22264c3cdca71c4f44d64045bec2001";
+
 /******************************************************/
 
 // mBaaSの初期化
@@ -45,7 +43,22 @@ function saveScore (name, score) {
     
     
     
-    
+    var GameScore = ncmb.DataStore("GameScore");
+// クラスインスタンスを生成
+var gameScore = new GameScore();
+// 値を設定
+gameScore.set("name", name);
+gameScore.set("score", score);
+// 保存を実施
+gameScore.save()
+         .then(function (){
+             // 保存に成功した場合の処理
+             console.log("保存に成功しました。");
+         })
+         .catch(function (error){
+             // 保存に失敗した場合の処理
+             console.log("保存に失敗しました。エラー:" + error); 
+         });
     
     
     
